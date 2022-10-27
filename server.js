@@ -3,6 +3,7 @@ const express = require('express');
 //Method for generating unique ids
 const uuid = require('./helper/uuid');
 const notes = require('./db/db.json')
+const path = require('path')
 
 const PORT = 3001;
 
@@ -13,9 +14,15 @@ app.use(express.urlencoded({extended: true }));
 
 app.use(express.static('public'));
 
-app.get('/', (req,res)=>
-    res.sendFile(path.join(__dirname, '/public/index.html'))
+//GET request for homepage
+app.get('*', (req,res)=>
+    res.sendFile(path.join(__dirname, '/assets/index.html'))
     );
+
+//GET request for the notes page
+app.get('/notes', (req,res)=>
+    res.sendFile(path.join(__dirname, '/assets/notes.html'))
+);
 
 //GET request for /api/notes
 app.get('/api/notes', (req,res)=> {
