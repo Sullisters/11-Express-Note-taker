@@ -1,6 +1,32 @@
 [
     {
-        "title":"Test Title",
-        "text":"Test text"
+        "title": "Test Title",
+        "text": "Test text",
+        "note_id": 0
+    },
+    {
+        "title": "The Dreaming City",
+        "text": "High Fantasy",
+        "note_id": "d376"
+    },
+    {
+        "title": "The Dreaming City",
+        "text": "High Fantasy",
+        "note_id": "13e3"
+    },
+    {
+        "title": "The Dreaming City",
+        "text": "High Fantasy",
+        "note_id": "b40f"
+    },
+    {
+        "title": "The Dreaming City",
+        "text": "High Fantasy",
+        "note_id": "b16c"
+    },
+    {
+        "title": "Neuromancer",
+        "text": "Cyberpunk",
+        "note_id": "864b"
     }
 ]
