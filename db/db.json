@@ -5,28 +5,18 @@
         "note_id": 0
     },
     {
-        "title": "The Dreaming City",
-        "text": "High Fantasy",
-        "note_id": "d376"
-    },
-    {
-        "title": "The Dreaming City",
-        "text": "High Fantasy",
-        "note_id": "13e3"
-    },
-    {
-        "title": "The Dreaming City",
-        "text": "High Fantasy",
-        "note_id": "b40f"
-    },
-    {
-        "title": "The Dreaming City",
-        "text": "High Fantasy",
-        "note_id": "b16c"
-    },
-    {
         "title": "Neuromancer",
         "text": "Cyberpunk",
-        "note_id": "864b"
+        "note_id": "10cb"
+    },
+    {
+        "title": "DUNE",
+        "text": "Cyberpunk",
+        "note_id": "a170"
+    },
+    {
+        "title": "Left Hand of Darkness",
+        "text": "Sience Fiction",
+        "note_id": "efe7"
     }
 ]

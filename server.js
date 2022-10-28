@@ -31,6 +31,9 @@ app.get('*', (req,res)=>
     res.sendFile(path.join(__dirname, 'index.html'))
     );
 
+//DELETE request for removing notes
+
+
 //POST request to add to the notes.json
 app.post('/api/notes', (req,res)=> {
     //log that POST request was received
