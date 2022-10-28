@@ -37,13 +37,10 @@ The following images show the web application's appearance and functionality:
 ![Note titled “Read Neuromancer” reads, “Philip said it is a fantastic example of the Cyberpunk genre” with other notes listed on the left.](./Assets/ExpressNoteTaker2.JPG)
 
 
-## Review
+## Link
 
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository, with a unique name and a README describing the project.
+Link for deployed Heroku site:
+https://express-note-taker-schreiber.herokuapp.com/
 
 - - -
 © 2022 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
