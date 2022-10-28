@@ -45,7 +45,7 @@ app.post('/api/notes', (req,res)=> {
         const newNote = {
             title,
             text,
-            note_id: uuid(),
+            id: uuid(),
         };
 
         //Obtain existing notes
@@ -63,27 +63,27 @@ app.post('/api/notes', (req,res)=> {
                 fs.writeFile(
                     './db/db.json', 
                     JSON.stringify(parsedNotes, null, 4),
-                    (writeErr)=>
-                        writeErr
-                            ? console.error(writeErr)
-                            : console.info('Successfully updated notes')
+                    (err, data)=> {
+                        if (err) {
+                            console.error(err);
+                        } else {
+                            const response = {
+                                status: 'success',
+                                body: newNote,
+                            };
+                    
+                            console.log(response);
+                            res.status(201).json(response);
+                        }
+                    }
                 );
                 
             }
         })
 
 
-        const response = {
-            status: 'success',
-            body: newNote,
-        };
-
-        console.log(response);
-        res.status(201).json(response);
-    } else {
-        res.status(500).json('Error in posting note');
-    }
-});
+    
+}});
 
 //DELETE request for the notes page
 app.delete('/api/notes/:id', (req,res)=> {
