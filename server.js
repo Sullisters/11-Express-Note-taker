@@ -20,7 +20,6 @@ app.get('/notes', (req,res)=>
     res.sendFile(path.join(__dirname, 'public/notes.html'))
 );
 
-
 //GET request for /api/notes
 app.get('/api/notes', (req,res)=> {
     res.status(200).json(notes);
@@ -30,8 +29,6 @@ app.get('/api/notes', (req,res)=> {
 app.get('*', (req,res)=>
     res.sendFile(path.join(__dirname, 'index.html'))
     );
-
-//DELETE request for removing notes
 
 
 //POST request to add to the notes.json
@@ -86,6 +83,41 @@ app.post('/api/notes', (req,res)=> {
     } else {
         res.status(500).json('Error in posting note');
     }
+});
+
+//DELETE request for the notes page
+app.delete('/api/notes/:id', (req,res)=> {
+    console.info(`${req.method} request received to remove a note`)
+
+    fs.readFile('./db/db.json', 'utf8', (err, data)=>{
+        if (err){
+            console.error(err);
+        } else {
+            //Convert string into JSON object
+            const parsedNotes = JSON.parse(data);
+
+            const deleteNotes = req.params.id;
+
+            const newNotes = parsedNotes.filter(note => note.note_id !== deleteNotes)
+            if (parsedNotes.length == newNotes.length){
+                return res.status(404).send(`Cannot find note`)
+            } else {
+                //Write updated notes back to the file
+                fs.writeFile(
+                    './db/db.json', 
+                    JSON.stringify(newNotes, null, 4), (err, data)=>{
+                        if (err){
+                            console.error(err);
+                        } else {
+                            return res.send('Note deleted.')
+                        }
+                    }
+
+                );
+            }
+            
+        }
+    })
 });
 
 app.listen(PORT, () =>
