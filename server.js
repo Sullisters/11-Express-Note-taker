@@ -98,7 +98,7 @@ app.delete('/api/notes/:id', (req,res)=> {
 
             const deleteNotes = req.params.id;
 
-            const newNotes = parsedNotes.filter(note => note.note_id !== deleteNotes)
+            const newNotes = parsedNotes.filter(note => note.id !== deleteNotes)
             if (parsedNotes.length == newNotes.length){
                 return res.status(404).send(`Cannot find note`)
             } else {

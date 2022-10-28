@@ -2,26 +2,6 @@
     {
         "title": "Test Title",
         "text": "Test text",
-        "note_id": 0
-    },
-    {
-        "title": "Neuromancer",
-        "text": "Cyberpunk",
-        "note_id": "10cb"
-    },
-    {
-        "title": "DUNE",
-        "text": "Cyberpunk",
-        "note_id": "a170"
-    },
-    {
-        "title": "Left Hand of Darkness",
-        "text": "Sience Fiction",
-        "note_id": "efe7"
-    },
-    {
-        "title": "Not Real",
-        "text": "Sience Fiction",
-        "note_id": "ff5c"
+        "id": 0
     }
 ]
