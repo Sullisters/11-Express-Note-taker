@@ -22,23 +22,25 @@ app.get('/notes', (req,res)=>
 
 //GET request for /api/notes
 app.get('/api/notes', (req,res)=> {
-    res.status(200).json(notes);
+    fs.readFile('./db/db.json', 'utf8', (err,data)=>{
+        if (err){
+            return res.status(500).send('Problem reading the database');
+        }
+        const notes = JSON.parse(data);
+        res.json(notes);
+    })
 });
 
-//GET request for homepage
-app.get('*', (req,res)=>
-    res.sendFile(path.join(__dirname, 'index.html'))
-    );
 
 
 //POST request to add to the notes.json
 app.post('/api/notes', (req,res)=> {
     //log that POST request was received
     console.info(`${req.method} request received to add a note`);
-
+    
     //Destructuring assignment for the items in req.body
     const { title, text }=req.body;
-
+    
     //If all required properties are present
     if (title && text) {
         //Variable for new object that will be saved
@@ -55,10 +57,10 @@ app.post('/api/notes', (req,res)=> {
             } else {
                 //Convert string into JSON object
                 const parsedNotes = JSON.parse(data);
-
+                
                 //Add new note
                 parsedNotes.push(newNote);
-        
+                
                 //Write updated notes back to the file
                 fs.writeFile(
                     './db/db.json', 
@@ -71,55 +73,60 @@ app.post('/api/notes', (req,res)=> {
                                 status: 'success',
                                 body: newNote,
                             };
-                    
+                            
                             console.log(response);
                             res.status(201).json(response);
                         }
                     }
-                );
-                
-            }
-        })
-
-
-    
-}});
-
+                    );
+                    
+                }
+            })
+            
+            
+            
+        }});
+        
 //DELETE request for the notes page
 app.delete('/api/notes/:id', (req,res)=> {
-    console.info(`${req.method} request received to remove a note`)
-
-    fs.readFile('./db/db.json', 'utf8', (err, data)=>{
-        if (err){
-            console.error(err);
-        } else {
-            //Convert string into JSON object
-            const parsedNotes = JSON.parse(data);
-
-            const deleteNotes = req.params.id;
-
-            const newNotes = parsedNotes.filter(note => note.id !== deleteNotes)
-            if (parsedNotes.length == newNotes.length){
-                return res.status(404).send(`Cannot find note`)
-            } else {
-                //Write updated notes back to the file
-                fs.writeFile(
-                    './db/db.json', 
-                    JSON.stringify(newNotes, null, 4), (err, data)=>{
-                        if (err){
-                            console.error(err);
-                        } else {
-                            return res.send('Note deleted.')
-                        }
-                    }
-
-                );
-            }
+            console.info(`${req.method} request received to remove a note`)
             
-        }
+            fs.readFile('./db/db.json', 'utf8', (err, data)=>{
+                if (err){
+                    console.error(err);
+                } else {
+                    //Convert string into JSON object
+                    const parsedNotes = JSON.parse(data);
+                    
+                    const deleteNotes = req.params.id;
+                    
+                    const newNotes = parsedNotes.filter(note => note.id !== deleteNotes)
+                    if (parsedNotes.length == newNotes.length){
+                        return res.status(404).send(`Cannot find note`)
+                    } else {
+                        //Write updated notes back to the file
+                        fs.writeFile(
+                            './db/db.json', 
+                            JSON.stringify(newNotes, null, 4), (err, data)=>{
+                                if (err){
+                                    console.error(err);
+                                } else {
+                                    return res.send('Note deleted.')
+                                }
+                            }
+                            
+                            );
+                        }
+                        
+                    }
     })
 });
 
+//GET request for homepage
+app.get('*', (req,res)=>
+    res.sendFile(path.join(__dirname, 'index.html'))
+    );
+
 app.listen(PORT, () =>
-    console.log(`App listening at http://localhost:${PORT}`)
+console.log(`App listening at http://localhost:${PORT}`)
 );
