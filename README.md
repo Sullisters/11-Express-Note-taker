@@ -9,7 +9,7 @@ Application that can be used to write, save and delete notes.
 
 ## Mock-Up
 
-The following images show the web application's appearance and functionality:
+The following images show the web application's appearance and functionality. Press the + to create a new note. Press the save icon to save the note to the list. Press the trash can icon to delete a note:
 
 ![Existing notes are listed in the left-hand column with empty fields on the right-hand side for the new note’s title and text.](./Assets/ExpressNoteTaker1.JPG)
 
